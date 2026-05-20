@@ -1,0 +1,79 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pqc"
+version = "0.1.0"
+description = "Post-Quantum Cryptography readiness scanner and connection monitor"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.8"
+keywords = ["pqc", "post-quantum", "tls", "ssh", "cryptography", "security"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: System Administrators",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security :: Cryptography",
+    "Topic :: System :: Networking :: Monitoring",
+]
+
+# Core deps — all optional extras add deeper probing capability
+dependencies = []
+
+[project.optional-dependencies]
+# Deep TLS enumeration
+sslyze = ["sslyze>=6.0"]
+
+# Full connection monitoring
+agent = ["psutil>=5.9"]
+
+# Deep SSH probing
+asyncssh = ["asyncssh>=2.14"]
+
+# Install everything
+all = ["sslyze>=6.0", "psutil>=5.9", "asyncssh>=2.14"]
+
+dev = [
+    "pytest>=8",
+    "pytest-asyncio",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+pqc = "pqc.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/The-CISO-Network/pqc"
+"Bug Tracker" = "https://github.com/The-CISO-Network/pqc/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["pqc*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
