@@ -16,7 +16,7 @@ Checks whether TLS, SSH, and VPN endpoints support post-quantum cryptographic
 algorithms (ML-KEM / Kyber, ML-DSA / Dilithium, FALCON, SPHINCS+, NTRU, …)
 and gives a binary verdict:
 
-![Agent architecture](agent.png)
+![Agent tool](agent.png)
 
 | Status        | Meaning                                                                       |
 | ------------- | ----------------------------------------------------------------------------- |
