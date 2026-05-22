@@ -23,6 +23,8 @@ and gives a binary verdict:
 | 🔴 **NO PQC** | No post-quantum algorithms detected. Vulnerable to harvest-now-decrypt-later. |
 | 🟢 **PQC OK** | At least one post-quantum algorithm was detected.                             |
 
+In the future, we expect to extend these statuses so that green represents only PQC algorithms being available.
+
 ---
 
 ## Installation
